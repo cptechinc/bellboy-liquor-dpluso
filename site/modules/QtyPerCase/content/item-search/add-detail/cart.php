@@ -68,9 +68,8 @@
 					<tr> <td>Price</td> <td class="text-right">$ <?= $item->price;?></td> </tr>
 					<tr> <td>In Stock</td> <td class="text-right"><?= $item->qty; ?></td> </tr>
 					<tr class="item-whse-row"><td>Whse:</td> <td class="item-whse-val"></td></tr>
-					<tr> <td>Case Qty</td> <td class="text-right"><input type="text" class="form-control input-sm pull-right qty" name="bottle-qty"></td> </tr>
-					<tr> <td>Bottle Qty</td> <td class="text-right"><input type="text" class="form-control input-sm pull-right qty" name="case-qty"></td> </tr>
-
+					<tr> <td>Case Qty</td> <td class="text-right"><input type="text" class="form-control text-right input-sm pull-right qty" name="case-qty"></td> </tr>
+					<tr> <td>Bottle Qty</td> <td class="text-right"><input type="text" class="form-control text-right input-sm pull-right qty" name="bottle-qty"></td> </tr>
 					<tr>
 						<td colspan="2" class="text-center">
 							<button type="submit" class="btn btn-primary btn-sm">

@@ -77,4 +77,24 @@ class QtyPerCase extends WireData implements Module {
 		// use "echo $page->hello_world;" in your template file to display output
 		//$this->addHookProperty('Page::hello_world', $this, 'example4');
 	}
+
+	/**
+	 * Return the fraction (as a decimal) of a case the number of bottle is for that item
+	 * @param  string $itemID  Item ID
+	 * @param  int    $bottles Number of Bottles
+	 * @param  int    $cases   Number of Cases
+	 * @return float           Fraction (as a decimal) of a case the number of bottle is for that item
+	 */
+	public function generate_qtyfromcasebottle($itemID, $bottles = 0, $cases = 0) {
+		$item = \XRefItem::load($itemID);
+		$cases = empty($cases) ? 0 : $cases;
+		$bottles = empty($bottles) ? 0 : $bottles;
+
+		if ($item->has_caseqty()) {
+			\DplusWire::wire('session')->addition = $cases + ($bottles / $item->qty_percase);
+			return $cases + ($bottles / $item->qty_percase);
+		} else {
+			return $bottles;
+		}
+	}
 }
