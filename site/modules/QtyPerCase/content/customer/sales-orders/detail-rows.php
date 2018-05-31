@@ -1,11 +1,21 @@
 <tr class="detail item-header">
-    <th colspan="2" class="text-center">Item ID/Cust Item ID</th>
-    <th colspan="2">Description</th>
-    <th class="text-right">Cases</th>
-    <th class="text-right">Bottles</th>
-    <th class="text-right" width="100">Price</th>
-    <th class="text-right">Back Order</th>
-    <th class="text-right">Shipped</th>
+    <th></th>
+    <th colspan="3" class="text-center">Item ID / Description</th>
+    <th colspan="2">
+        <div class="text-center"><span class="label context">Ordered</span></div>
+        <div class="row">
+            <div class="col-xs-6">Cases</div>
+            <div class="col-xs-6">Bottles</div>
+        </div>
+    </th>
+    <th class="text-right" width="100">Total</th>
+    <th colspan="2">
+        <div class="text-center"><span class="label context">Shipped</span></div>
+        <div class="row">
+            <div class="col-xs-6">Cases</div>
+            <div class="col-xs-6">Bottles</div>
+        </div>
+    </th>
     <th>Notes</th>
     <th>Reorder</th>
     <th>Documents</th>
@@ -13,11 +23,10 @@
 <?php $details = $orderpanel->get_orderdetails($order); ?>
 <?php foreach ($details as $detail) : ?>
     <tr class="detail">
-        <td colspan="2" class="text-center">
+        <td></td>
+        <td colspan="3">
             <?= $orderpanel->generate_detailvieweditlink($order, $detail); ?>
-        </td>
-        <td colspan="2">
-            <?php if (strlen($detail->vendoritemid)) { echo ' '.$detail->vendoritemid."<br>";} ?>
+            <?= strlen($detail->vendoritemid) ? "($detail->vendoritemid)" : ''; ?> <br>
             <?= $detail->desc1. ' ' . $detail->desc2 ; ?>
         </td>
         <td class="text-right">
@@ -27,9 +36,20 @@
             <?php endif; ?>
         </td>
         <td class="text-right"><?= $detail->get_bottleqty(); ?></td>
-        <td class="text-right">$ <?= $page->stringerbell->format_money($detail->price);?></td>
-        <td class="text-right"><?= intval($detail->qtybackord); ?></td>
-        <td class="text-right"><?= intval($detail->qtyshipped); ?></td>
+        <td class="text-right">
+            <span class="has-hover" data-toggle="tooltip" data-placement="top" title="<?= 'Price / UoM: $'.$page->stringerbell->format_money($detail->price); ?>">
+				$ <?= $page->stringerbell->format_money($detail->totalprice); ?>
+			</span>
+        </td>
+        <td class="text-right">
+            <?= $detail->get_caseqtyshipped(); ?>
+            <?php if ($detail->get_caseqtyshipped()) : ?>
+                <button type="button" class="btn btn-xs btn-info" data-toggle="tooltip" data-placement="top" title="<?= $detail->get_casebottleqtyshipped().' bottles'; ?>">?</button>
+            <?php endif; ?>
+        </td>
+        <td class="text-right">
+            <?= $detail->get_bottleqtyshipped(); ?>
+        </td>
         <td><?= $orderpanel->generate_loaddplusnoteslink($order, $detail->linenbr); ?></td>
         <td><?= $orderpanel->generate_detailreorderform($order, $detail); ?></td>
         <td><div><?= $orderpanel->generate_loaddocumentslink($order, $detail); ?></div></td>
