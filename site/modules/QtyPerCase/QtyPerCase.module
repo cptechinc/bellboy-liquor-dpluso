@@ -91,10 +91,28 @@ class QtyPerCase extends WireData implements Module {
 		$bottles = empty($bottles) ? 0 : $bottles;
 
 		if ($item->has_caseqty()) {
-			\DplusWire::wire('session')->addition = $cases + ($bottles / $item->qty_percase);
 			return $cases + ($bottles / $item->qty_percase);
 		} else {
 			return $bottles;
 		}
 	}
+
+	public function generate_casebottleqtydesc($itemID, $qty) {
+		$item = \XRefItem::load($itemID);
+		$cases = $bottles = 0;
+		$stringer = new \StringerBell();
+
+		if ($item->has_caseqty()) {
+			$cases = ($item->has_caseqty()) ? floor($qty) : 0;
+			$fraction = $qty - $cases;
+			$bottles = round($fraction * $item->qty_percase);
+		} else {
+			$bottles = $qty;
+		}
+
+		$casedescription = $cases ? "$cases " . $stringer->generate_plural($cases, 'case') : '';
+		$bottledescription = $bottles ? "$bottles " . $stringer->generate_plural($bottles, 'bottle') : '';
+		return "$casedescription $bottledescription";
+	}
+
 }
