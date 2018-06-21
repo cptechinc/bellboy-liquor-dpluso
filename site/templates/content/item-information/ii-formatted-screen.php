@@ -10,18 +10,20 @@
 		$url->query->set('view', 'print');
 		echo $page->bootstrap->openandclose('p', '', $page->bootstrap->makeprintlink($url->getUrl(), 'View Printable Version'));
 	}
-	
+
 	if (file_exists($tableformatter->fullfilepath)) {
 		// JSON file will be false if an error occurred during file_get_contents or json_decode
 		$tableformatter->process_json();
-		
+
 		if ($tableformatter->json['error']) {
 			echo $page->bootstrap->createalert('warning', $tableformatter->json['errormsg']);
 		} else {
+			$session->itemid = $tableformatter->json['itemid'];
 			$print = $input->get->text('view') == 'print' ? true : false;
 			$tableformatter->set_printpage($print);
 			echo $tableformatter->generate_screen();
             echo $tableformatter->generate_javascript();
+			$session->remove('itemid');
 		}
 	} else {
 		echo $page->bootstrap->createalert('warning', 'Information Not Available');

@@ -9,13 +9,13 @@
 		protected $datasections = array(
 			"detail" => "Detail"
 		);
-        
+
         public function generate_screen() {
 			$url = new \Purl\Url(Processwire\wire('config')->pages->ajaxload."ii/ii-documents/order/");
             $bootstrap = new Contento();
             $content = '';
 			$this->generate_tableblueprint();
-			
+
             foreach ($this->json['data'] as $whseid => $whse) {
                 $content .= $bootstrap->h3('', $whse['Whse Name']);
 				$tb = new Table("class=table table-striped table-bordered table-condensed table-excel|id=$whseid");
@@ -51,7 +51,7 @@
 										$class = Processwire\wire('config')->textjustify[$this->fields['data']['detail'][$column['id']]['datajustify']];
 										$colspan = $column['col-length'];
 										$celldata = TableScreenMaker::generate_formattedcelldata($this->fields['data']['detail'][$column['id']]['type'], $order, $column);
-										
+
 										if ($i == 1 && !empty($order["Sales Order Number"])) {
 											$ordn = $order['Ordn'];
 											$itemID = $this->json['itemid'];
@@ -99,7 +99,7 @@
             } // FOREACH Whse
             return $content;
         }
-		
+
 		public function generate_javascript() {
 			$bootstrap = new Contento();
 			$content = '';
