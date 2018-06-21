@@ -16,7 +16,7 @@
  */
 
 class QtyPerCase extends WireData implements Module {
-	
+
 
 	/**
 	 * getModuleInfo is a module required by all modules to tell ProcessWire about them
@@ -113,7 +113,8 @@ class QtyPerCase extends WireData implements Module {
 
 		$casedescription = $cases ? "$cases " . $stringer->generate_plural($cases, 'case') : '';
 		$bottledescription = $bottles ? "$bottles " . $stringer->generate_plural($bottles, 'bottle') : '';
-		return "$casedescription $bottledescription";
+		$description = !empty(trim("$casedescription $bottledescription")) ? "$casedescription $bottledescription" : '0 bottles';
+		return $description;
 	}
 
 }
