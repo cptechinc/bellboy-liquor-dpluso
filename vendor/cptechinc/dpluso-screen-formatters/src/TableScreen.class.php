@@ -135,13 +135,8 @@
 		}
 
 		/**
-<<<<<<< HEAD
 		 * Turn on or off if this Page is printable
 		 * @param bool $forprint Is this for a Printable Page
-=======
-		 * Turn debug on or Off
-		 * @param bool $debug
->>>>>>> master
 		 */
 		public function set_printpage($forprint = false) {
 			$this->forprint = $forprint;
