@@ -304,8 +304,12 @@
 				if (DplusWire::wire('modules')->isInstalled('QtyPerCase')) {
 					$qtypercase = DplusWire::wire('modules')->get('QtyPerCase');
 					$itemID = isset($parent["Item ID"]) ? $parent["Item ID"] : DplusWire::wire('session')->itemid;
-					$description = $qtypercase->generate_casebottleqtydesc($itemID, $celldata);
-					return $bootstrap->span("class=has-hover|data-toggle=tooltip|title=$description", $celldata);
+					if (!empty($itemID)) {
+						$description = $qtypercase->generate_casebottleqtydesc($itemID, $celldata);
+						return $bootstrap->span("class=has-hover|data-toggle=tooltip|title=$description", $celldata);
+					} else {
+						return $celldata;
+					}
 				} else {
 					return $celldata;
 				}
