@@ -106,8 +106,4 @@
         </div>
 	</form>
 <?php endforeach; ?>
-<div class="form-group">
-	<button type="button" class="btn btn-sm btn-primary"  data-toggle="modal" data-target="#item-lookup-modal">
-		<span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; Search Items
-	</button>
-</div>
+<?php include $config->paths->siteModules.'QtyPerCase/content/edit/sales-order/details/add-quick-entry.php'; ?>

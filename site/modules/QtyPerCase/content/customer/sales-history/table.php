@@ -18,7 +18,7 @@
 					<?= $orderpanel->generate_shiptopopover($order); ?>
 				</td>
 				<td class="text-right"><?= DplusDateTime::format_date($order->orderdate); ?></td>
-				<td class="text-right">$ <?= formatmoney($order->ordertotal); ?></td>
+				<td class="text-right">$ <?= $page->stringerbell->format_money($order->ordertotal); ?></td>
 				<td class="text-right"><?= DplusDateTime::format_date($order->invdate); ?></td>
 				<td colspan="4">
 					<span class="col-xs-3"><?= $orderpanel->generate_loaddocumentslink($order); ?></span>
