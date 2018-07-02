@@ -17,8 +17,8 @@
 		</a>
 	</th>
 	<th>
-		<a href="<?= $orderpanel->generate_tablesortbyurl("ordertotal") ; ?>" class="load-link" <?= $orderpanel->ajaxdata; ?>>
-			Order Totals <?= $orderpanel->tablesorter->generate_sortsymbol('ordertotal'); ?>
+		<a href="<?= $orderpanel->generate_tablesortbyurl("total_order") ; ?>" class="load-link" <?= $orderpanel->ajaxdata; ?>>
+			Order Totals <?= $orderpanel->tablesorter->generate_sortsymbol('total_order'); ?>
 		</a>
 	</th>
 	<th>

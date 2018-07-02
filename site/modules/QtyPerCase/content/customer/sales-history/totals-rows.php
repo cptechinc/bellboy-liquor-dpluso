@@ -11,5 +11,5 @@
 	<td></td> <td colspan="2">Misc.</td> <td colspan="3"></td><td colspan="2" class="text-right">$ <?= $page->stringerbell->format_money($order->misccost); ?></td> <td colspan="5"></td>
 </tr>
 <tr>
-	<td></td> <td colspan="2">Total</td> <td colspan="3"></td> <td colspan="2" class="text-right">$ <?= $page->stringerbell->format_money($order->ordertotal); ?></td> <td colspan="5"></td>
+	<td></td> <td colspan="2">Total</td> <td colspan="3"></td> <td colspan="2" class="text-right">$ <?= $page->stringerbell->format_money($order->total_order); ?></td> <td colspan="5"></td>
 </tr>
