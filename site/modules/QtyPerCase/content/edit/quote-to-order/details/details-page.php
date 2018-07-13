@@ -1,6 +1,6 @@
 <div id="sales-order-details">
 	<div class="form-group">
-        <?php include $config->paths->siteModules.'QtyPerCase/content/edit/quote/details/details.php'; ?>
+        <?php include $config->paths->siteModules.'QtyPerCase/content/edit/quote-to-order/details/details.php'; ?>
     </div>
 	<div class="row">
 		<div class="col-xs-6 col-sm-7"></div>

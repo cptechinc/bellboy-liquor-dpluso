@@ -3,7 +3,8 @@
 	<strong>
 		<div class="col-sm-9">
 			<div class="row">
-				<div class="col-sm-4 sm-padding">Item / Description</div>
+				<div class="col-sm-1 sm-padding"><input type="checkbox" id="select-all"> All</div>
+				<div class="col-sm-3 sm-padding">Item / Description</div>
 				<div class="col-sm-1 text-left sm-padding">WH</div>
 				<div class="col-sm-1 text-right sm-padding">Cases</div>
                 <div class="col-sm-1 text-right sm-padding">Bottles</div>
@@ -32,7 +33,10 @@
 			<div class="row">
 				<div class="col-sm-9">
 					<div class="row">
-						<div class="col-md-4 form-group sm-padding">
+						<div class="col-sm-1 sm-padding">
+	                        <input type="checkbox" value="<?= $detail->linenbr; ?>" class="select-item" checked>
+	                    </div>
+						<div class="col-md-3 form-group sm-padding">
 							<span class="detail-line-field-name">Item/Description:</span>
 							<div>
 								<?php if ($detail->has_error()) : ?>

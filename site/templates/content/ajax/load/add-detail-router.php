@@ -20,8 +20,13 @@
 			$formaction = $config->pages->quotes."redir/";
             break;
     }
-
-    $page->body = $config->paths->content."products/ajax/load/add-multiple/add-multiple-item-form.php";
+    
+    if ($modules->isInstalled('QtyPerCase')) {
+        $page->body = $config->paths->siteModules.'QtyPerCase/content/item-search/add-detail/add-multiple-form.php';
+    } else {
+        $page->body = $config->paths->content."products/ajax/load/add-multiple/add-multiple-item-form.php";
+    }
+    
 
 	if ($config->ajax) {
         if ($config->modal) {

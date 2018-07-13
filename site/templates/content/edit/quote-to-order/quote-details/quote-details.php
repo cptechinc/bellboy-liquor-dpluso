@@ -1,10 +1,9 @@
 <hr class="detail-line-header">
 <div class="row detail-line-header">
 	<strong>
-<<<<<<< HEAD
 		<div class="col-sm-9">
 			<div class="row">
-                <div class="col-sm-1 sm-padding"><input type="checkbox" id="select-all">&nbsp;&nbsp;</div>
+                <div class="col-sm-1 sm-padding"><input type="checkbox" id="select-all"> All</div>
 				<div class="col-sm-3 sm-padding">Item / Description</div>
 				<div class="col-sm-1 text-left sm-padding">WH</div>
 				<div class="col-sm-1 text-right ">Qty</div>
@@ -12,16 +11,6 @@
 				<div class="col-sm-2 sm-padding">Total</div>
 				<div class="col-sm-2 sm-padding">Rqst Date</div>
 			</div>
-=======
-		<div class="col-md-9 sm-padding">
-            <div class="col-sm-1 sm-padding"><input type="checkbox" id="select-all">&nbsp;&nbsp;</div>
-			<div class="col-sm-3 sm-padding">Item / Description</div>
-			<div class="col-sm-1 text-left sm-padding">WH</div>
-			<div class="col-sm-1 text-right ">Qty</div>
-			<div class="col-sm-2 text-center sm-padding">Price</div>
-			<div class="col-sm-2 sm-padding">Total</div>
-			<div class="col-sm-2 sm-padding">Rqst Date</div>
->>>>>>> 251ec5c08... Merge pull request #180 from cptechinc/quick-entry-add
 		</div>
 		<div class="col-sm-3">
 			<div class="row">
