@@ -2,6 +2,7 @@
 	<input type="hidden" name="action" value="add-to-order">
 	<input type="hidden" name="ordn" value="<?= $order->orderno; ?>">
 	<input type="hidden" name="custID" value="<?= $order->custid; ?>">
+	<input type="hidden" name="qty-percase" value="">
 	<div class="row">
 		<div class="col-xs-9 sm-padding">
 			<div class="row">

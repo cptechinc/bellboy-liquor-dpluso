@@ -24,13 +24,14 @@
 <hr>
 
 <?php $quote_details = $editquotedisplay->get_quotedetails($quote); ?>
+<div class="quote-details">
 <?php foreach ($quote_details as $detail) : ?>
 	<form action="<?= $config->pages->quotes.'redir/'; ?>" method="post" class="form-group allow-enterkey-submit">
 		<input type="hidden" name="action" value="quick-update-line">
 		<input type="hidden" name="qnbr" value="<?= $qnbr; ?>">
 		<input type="hidden" name="linenbr" value="<?= $detail->linenbr; ?>">
 		<div>
-			<div class="row">
+			<div class="row detail-line">
 				<div class="col-sm-9">
 					<div class="row">
 						<div class="col-sm-1 sm-padding">
@@ -110,4 +111,5 @@
 		</div>
 	</form>
 <?php endforeach; ?>
+</div>
 <?php include $config->paths->siteModules.'QtyPerCase/content/edit/quote/details/add-quick-entry.php'; ?>

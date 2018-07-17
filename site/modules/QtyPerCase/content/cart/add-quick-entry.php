@@ -1,6 +1,7 @@
 <form action="<?= $config->pages->cart.'redir/'; ?>" method="post" class="quick-entry-add allow-enterkey-submit" id="quick-entry-add" data-validated="">
 	<input type="hidden" name="action" value="add-to-cart">
 	<input type="hidden" name="custID" value="<?= $custID; ?>">
+	<input type="hidden" name="qty-percase" value="">
 	<div class="row">
 		<div class="col-xs-9 sm-padding">
 			<div class="col-md-4 form-group sm-padding">

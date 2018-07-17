@@ -2,6 +2,7 @@
 	<input type="hidden" name="action" value="add-to-quote">
 	<input type="hidden" name="qnbr" value="<?= $quote->quotnbr; ?>">
 	<input type="hidden" name="custID" value="<?= $quote->custid; ?>">
+	<input type="hidden" name="qty-percase" value="">
 	<div class="row">
 		<div class="col-xs-9 sm-padding">
 			<div class="row">
