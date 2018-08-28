@@ -55,8 +55,8 @@ $(function() {
                         var productsearchurl = URI(config.urls.products.redir.itemsearch).addQuery('q', itemsearch).addQuery('custID', custID).toString();
                         var productresultsurl = URI(config.urls.load.quickentry_searchresults).addQuery('q', itemsearch).toString();
                         showajaxloading();
-                        dplusrequest(productsearchurl, function() {
-                            form.find('.results').loadin(productresultsurl, function() {
+                        $.get(productsearchurl, function() {
+                            form.find('.item-results').loadin(productresultsurl, function() {
                                 hideajaxloading();
                                 if (focus.length > 0) {
                                     $('html, body').animate({scrollTop: $(focus).offset().top - 60}, 1000);

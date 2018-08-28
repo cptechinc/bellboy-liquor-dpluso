@@ -1,10 +1,10 @@
 <?php
     $q = $input->get->text('q');
-    $items = get_itemsearchresults(session_id(), $config->showonpage, $input->pageNum());
+    $items = get_itemsearchresults(session_id(), $session->display, $input->pageNum());
     $itemcount = count_itemsearchresults(session_id());
-    $paginator = new Paginator($input->pageNum, $itemcount, $page->fullURL, 'quick-entry-search', 'data-loadinto=".results" data-focus=".results"');
+    $paginator = new Paginator($input->pageNum, $itemcount, $page->fullURL, 'quick-entry-search', 'data-loadinto=".item-results" data-focus=".item-results"');
 ?>
-<div class="results">
+<div class="item-results">
     <h3>Item Results for <?= $q; ?></h3>
 
     <?php if (!$itemcount) : ?>
