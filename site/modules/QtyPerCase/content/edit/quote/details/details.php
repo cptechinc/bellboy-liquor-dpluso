@@ -42,6 +42,7 @@
 								<?php else : ?>
 									<?= $detail->itemid; ?>
 									<?= (strlen($detail->vendoritemid)) ? "($detail->vendoritemid)" : ''; ?>
+									<small class="label label-primary"><?= "".$detail->get_qtypercase() . " per case"; ?></small>
 									<br> <small><?= $detail->desc1; ?></small>
 								<?php endif; ?>
 							</div>

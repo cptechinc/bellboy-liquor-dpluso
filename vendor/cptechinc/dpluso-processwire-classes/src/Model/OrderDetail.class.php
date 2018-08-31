@@ -111,6 +111,15 @@
 			return intval($cases * $item->qty_percase);
 		}
 
+		public function get_qtypercase() {
+			if (in_array($this->itemid, DplusWire::wire('config')->nonstockitems)) {
+				return 1;
+			} else {
+				$item = XRefItem::load($this->itemid);
+				return $item->qty_percase;
+			}
+		}
+
 		/* =============================================================
 			Some functions provided by MagicMethodTraits
 		============================================================ */

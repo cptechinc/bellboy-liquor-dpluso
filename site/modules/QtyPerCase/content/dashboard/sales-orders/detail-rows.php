@@ -26,7 +26,8 @@
        <td></td>
        <td colspan="3">
            <?= $orderpanel->generate_detailvieweditlink($order, $detail); ?>
-            <?= strlen($detail->vendoritemid) ? "($detail->vendoritemid)" : ''; ?> <br>
+            <?= strlen($detail->vendoritemid) ? "($detail->vendoritemid)" : ''; ?>
+            <small class="label label-primary"><?= "".$detail->get_qtypercase() . " per case"; ?></small> <br>
             <?= $detail->desc1. ' ' . $detail->desc2 ; ?>
        </td>
        <td colspan="2">

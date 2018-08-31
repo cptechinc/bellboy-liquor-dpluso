@@ -18,7 +18,8 @@
             <?= $quotepanel->generate_detailvieweditlink($quote, $detail); ?>
         </td>
         <td colspan="2">
-            <?php if (strlen($detail->vendoritemid)) { echo ' '.$detail->vendoritemid."<br>";} ?>
+            <?= strlen($detail->vendoritemid) ? "($detail->vendoritemid)" : ''; ?>
+            <small class="label label-primary"><?= "".$detail->get_qtypercase() . " per case"; ?></small> <br>
             <?= $detail->desc1; ?>
         </td>
         <td class="text-right">$ <?= $page->stringerbell->format_money($detail->quotprice); ?></td>

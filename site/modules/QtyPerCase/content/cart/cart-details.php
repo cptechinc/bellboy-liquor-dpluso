@@ -40,7 +40,8 @@
 								</div>
 							<?php else : ?>
 								<?= $detail->itemid; ?>
-								<?= (strlen($detail->vendoritemid)) ? "($detail->vendoritemid)" : ''; ?>
+								<?= (strlen($detail->vendoritemid)) ? " ($detail->vendoritemid)" : ''; ?>
+								<small class="label label-primary"><?= "".$detail->get_qtypercase() . " per case"; ?></small>
 								<br> <small><div class="form-group"><?= $detail->desc1; ?></div></small>
 							<?php endif; ?>
 						</div>

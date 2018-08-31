@@ -99,29 +99,34 @@ class QtyPerCase extends WireData implements Module {
 	}
 
 	public function generate_casebottleqtydesc($itemID, $qty) {
-		$item = \XRefItem::load($itemID);
-		$cases = $bottles = 0;
-		$stringer = new \StringerBell();
-
-		if ($item->has_caseqty()) {
-			$cases = ($item->has_caseqty()) ? floor($qty) : 0;
-			$fraction = $qty - $cases;
-			$bottles = round($fraction * $item->qty_percase);
-		} else {
+		if (in_array($itemID, DplusWire::wire('config')->nonstockitems)) {
+			$cases = 0;
 			$bottles = $qty;
-		}
+		} else {
+			$item = \XRefItem::load($itemID);
+			$cases = $bottles = 0;
+			$stringer = new \StringerBell();
 
+			if ($item->has_caseqty()) {
+				$cases = ($item->has_caseqty()) ? floor($qty) : 0;
+				$fraction = $qty - $cases;
+				$bottles = round($fraction * $item->qty_percase);
+			} else {
+				$bottles = $qty;
+			}
+		}
+		
 		$casedescription = $cases ? "$cases " . $stringer->generate_plural($cases, 'case') : '';
 		$bottledescription = $bottles ? "$bottles " . $stringer->generate_plural($bottles, 'bottle') : '';
 		$description = !empty(trim("$casedescription $bottledescription")) ? "$casedescription $bottledescription" : '0 bottles';
 		return $description;
 	}
-	
+
 	public function generate_multipleitemdata($data, $items, $case_qtys, $bottle_qtys) {
 		for ($i = 0; $i < sizeof($items); $i++) {
 			$itemID = str_pad(\DplusWire::wire('sanitizer')->text($items[$i]), 30, ' ');
 			$qty = $this->generate_qtyfromcasebottle($itemID, \DplusWire::wire('sanitizer')->text($bottle_qtys[$i]), \DplusWire::wire('sanitizer')->text($case_qtys[$i]));
-			
+
 			if (empty($qty)) {$qty = "1"; }
 			$data[] = "ITEMID={$itemID}QTY=$qty";
 		}
