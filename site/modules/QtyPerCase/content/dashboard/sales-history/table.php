@@ -20,7 +20,7 @@
 				</td>
 				<td class="text-right"><?= DplusDateTime::format_date($order->orderdate); ?></td>
 				<td class="text-right">$ <?= $page->stringerbell->format_money($order->total_order); ?></td>
-				<td class="text-right"><?= DplusDateTime::format_date($order->invdate); ?></td>
+				<td class="text-right"><?= DplusDateTime::format_date($order->invoice_date); ?></td>
 				<td colspan="5">
 					<span class="col-xs-3"><?= $orderpanel->generate_loaddocumentslink($order); ?></span>
 					<span class="col-xs-3"><?= $orderpanel->generate_loadtrackinglink($order); ?></span>

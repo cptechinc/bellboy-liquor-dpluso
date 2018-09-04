@@ -9,6 +9,7 @@
 
 		<?php $orderpanel->get_orders(); ?>
 		<?php foreach($orderpanel->orders as $order) : ?>
+
 			<tr class="<?= $orderpanel->generate_rowclass($order); ?>" id="<?= $order->orderno; ?>">
 				<td class="text-center"><?= $orderpanel->generate_expandorcollapselink($order); ?></td>
 				<td><?= $order->orderno; ?></td>
@@ -19,7 +20,7 @@
 				</td>
 				<td class="text-right"><?= DplusDateTime::format_date($order->orderdate); ?></td>
 				<td class="text-right">$ <?= $page->stringerbell->format_money($order->total_order); ?></td>
-				<td class="text-right"><?= DplusDateTime::format_date($order->invdate); ?></td>
+				<td class="text-right"><?= DplusDateTime::format_date($order->invoice_date); ?></td>
 				<td colspan="4">
 					<span class="col-xs-3"><?= $orderpanel->generate_loaddocumentslink($order); ?></span>
 					<span class="col-xs-3"><?= $orderpanel->generate_loadtrackinglink($order); ?></span>
