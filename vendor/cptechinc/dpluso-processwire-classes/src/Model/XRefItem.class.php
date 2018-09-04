@@ -98,7 +98,7 @@
                 return false;
             }
         }
-        
+
         /**
          * Returns true if this item is dealt in case qty
          * If the case qty is 1, then we only deal with the item as Eaches
@@ -107,7 +107,7 @@
         public function has_caseqty() {
             return ($this->qty_percase != 1) ? true : false;
         }
-        
+
 		/**
 		 * Checks if Item image exists if not use the image not found
 		 * @return string path/to/image
@@ -197,12 +197,12 @@
 		 * @param  mixed   $custID   Customer ID to use Cross-reference or false
 		 * @param  mixed   $vendorID Vendor ID to use Cross-reference or false
 		 * @param  bool    $debug    Whether XrefItem object is returned or the SQL for retreiving it
-		 * @return XRefItem            Or SQL Query for it
+		 * @return XRefItem          Or SQL Query for it
 		 */
 		public static function load($itemID, $custID = false, $vendorID = false, $debug = false) {
 			return get_xrefitem($itemID, $custID, $vendorID, $debug);
 		}
-        
+
         /**
          * Returns Item Description
          * @param  string  $itemID   Item ID / Part #
@@ -212,7 +212,7 @@
         public static function get_itemdescription($itemID, $debug = false) {
             return get_xrefitemdescription($itemID, $debug);
         }
-        
+
         /**
          * Returns the itemID for the next or previous Item
          * @param  string $itemID     Item ID / Part Number

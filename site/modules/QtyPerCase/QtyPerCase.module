@@ -98,8 +98,14 @@ class QtyPerCase extends WireData implements Module {
 		}
 	}
 
+	/**
+	 * Returns Description of how many Bottles and Cases
+	 * @param  string $itemID Item ID / Item Number
+	 * @param  int    $qty    Quantity
+	 * @return string         Quantity e.g. X cases X bottles
+	 */
 	public function generate_casebottleqtydesc($itemID, $qty) {
-		if (in_array($itemID, DplusWire::wire('config')->nonstockitems)) {
+		if (in_array($itemID, \DplusWire::wire('config')->nonstockitems)) {
 			$cases = 0;
 			$bottles = $qty;
 		} else {
@@ -107,15 +113,19 @@ class QtyPerCase extends WireData implements Module {
 			$cases = $bottles = 0;
 			$stringer = new \StringerBell();
 
-			if ($item->has_caseqty()) {
-				$cases = ($item->has_caseqty()) ? floor($qty) : 0;
-				$fraction = $qty - $cases;
-				$bottles = round($fraction * $item->qty_percase);
+			if ($item) { // IF XREF ITEM IS NOT NULL / FALSE
+				if ($item->has_caseqty()) {
+					$cases = ($item->has_caseqty()) ? floor($qty) : 0;
+					$fraction = $qty - $cases;
+					$bottles = round($fraction * $item->qty_percase);
+				} else {
+					$bottles = $qty;
+				}
 			} else {
 				$bottles = $qty;
 			}
 		}
-		
+
 		$casedescription = $cases ? "$cases " . $stringer->generate_plural($cases, 'case') : '';
 		$bottledescription = $bottles ? "$bottles " . $stringer->generate_plural($bottles, 'bottle') : '';
 		$description = !empty(trim("$casedescription $bottledescription")) ? "$casedescription $bottledescription" : '0 bottles';
