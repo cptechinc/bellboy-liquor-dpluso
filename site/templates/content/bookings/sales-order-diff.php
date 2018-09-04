@@ -1,13 +1,15 @@
-<?php 
-	$bookingspanel = new BookingsPanel(session_id(), $page->fullURL); 
+<?php
+	$bookingspanel = new BookingsPanel(session_id(), $page->fullURL);
 	$date = $input->get->text('date');
 	$details = $bookingspanel->get_bookingdayorderdetails($ordn, $date);
 ?>
 <?= $bookingspanel->generate_viewsalesordersbydaybacklink($date); ?>
+</br>
+</br>
 <div class="table-responsive">
 	<table class="table table-bordered table-condensed table-striped">
-		<thead> 
-			<tr> <th>Item ID</th> <th>Before Qty</th> <th>After Qty</th> <th>Before Price</th> <th>After Price</th> <th>Net Amount</th> </tr> 
+		<thead>
+			<tr> <th>Item ID</th> <th>Before Qty</th> <th>After Qty</th> <th>Before Price</th> <th>After Price</th> <th>Net Amount</th> </tr>
 		</thead>
 		<tbody>
 			<?php foreach ($details as $detail) : ?>
