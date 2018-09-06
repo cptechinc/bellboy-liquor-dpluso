@@ -396,7 +396,7 @@
 			$ajaxdata = "data-modal=$this->modal";
 			return $bootstrap->openandclose('a', "href=$href|class=btn btn-primary btn-sm load-into-modal info-screen|$ajaxdata", "$icon View Sales Orders");
 		}
-		
+
 		/**
 		 * Returns HTML Link to view the days booked sales orders
 		 * @param  string $date Date for viewing bookings
@@ -408,7 +408,7 @@
 			$href = $this->generate_viewsalesordersbydayurl($date);
 			$icon = $bootstrap->createicon('fa fa-arrow-circle-left');
 			$ajaxdata = "data-modal=$this->modal";
-			return $bootstrap->openandclose('a', "href=$href|class=btn btn-primary btn-sm load-into-modal info-screen|$ajaxdata", "$icon Back to Bookings on $date");
+			return $bootstrap->openandclose('a', "href=$href|class=btn btn-primary btn-sm modal-load info-screen|$ajaxdata", "$icon Back to Bookings on $date");
 		}
 
 		/**
@@ -440,7 +440,7 @@
 			$ajaxdata = "data-modal=$this->modal";
 			return $bootstrap->openandclose('a', "href=$href|class=modal-load btn btn-primary btn-sm|$ajaxdata", "$icon View Sales Order changes on $date");
 		}
-		
+
 		/**
 		 * Returns URL to view bookings for that month
 		 * @param  string $date Date usually in m/d/Y format
@@ -450,7 +450,7 @@
 			$firstofmonth = date('m/01/Y', strtotime($date));
 			$daysinmonth = cal_days_in_month(CAL_GREGORIAN, date('m', strtotime($date)), date('Y', strtotime($date)));
 			$lastofmonth = date("m/$daysinmonth/Y", strtotime($date));
-			
+
 			$url = new Purl\Url($this->pageurl->getUrl());
 			$url->path = DplusWire::wire('config')->pages->ajaxload."bookings/";
 			$url->query = '';
@@ -458,7 +458,7 @@
 			$url->query->set('bookdate', "$firstofmonth|$lastofmonth");
 			return $url->getUrl();
 		}
-		
+
 		/**
 		 * Creates HTML link to view bookings for that month
 		 * @param  string $date Date usually in m/d/Y format
