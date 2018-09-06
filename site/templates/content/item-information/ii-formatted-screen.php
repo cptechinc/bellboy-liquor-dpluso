@@ -5,16 +5,16 @@
 		$tableformatter->set_debug(true);
 	}
 
-	if ($config->ajax && $input->post->text('action') != 'preview') {
+	if ($config->ajax && $input->post->text('action') != 'preview' && $input->get->text('ajax') != 'false') {
 		$url = new Purl\Url($page->fullURL->getUrl());
 		$url->query->set('view', 'print');
 		echo $page->bootstrap->openandclose('p', '', $page->bootstrap->makeprintlink($url->getUrl(), 'View Printable Version'));
 	}
-	
+
 	if (file_exists($tableformatter->fullfilepath)) {
 		// JSON file will be false if an error occurred during file_get_contents or json_decode
 		$tableformatter->process_json();
-		
+
 		if ($tableformatter->json['error']) {
 			echo $page->bootstrap->createalert('warning', $tableformatter->json['errormsg']);
 		} else {

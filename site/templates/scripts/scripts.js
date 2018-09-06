@@ -285,7 +285,6 @@ $(document).ready(function() {
 				if (closestmodal.attr('id') != ajaxloader.loadinto) {
 					closestmodal.find("[data-dismiss='modal']").click();
 				}
-
 			}
 
 			ajaxloader.url = URI(ajaxloader.url).addQuery('modal', 'modal').normalizeQuery().toString();

@@ -128,7 +128,7 @@ $(function() {
 			});
 		});
 	});
-	
+
 	$("body").on("click", '.load-quote-documents', function(e) {
 		e.preventDefault();
 		var itemID = $(this).data('itemid');
@@ -636,8 +636,9 @@ $(function() {
 
 	function loadiipage(custID, shipID, itemID, callback) {
 		var loadinto = ".page";
-		var href = iiurl(config.urls.products.iteminfo, itemID, custID, shipID);
+		var href = URI(iiurl(config.urls.products.iteminfo, itemID, custID, shipID)).addQuery('ajax', 'false').toString();
 		var msg = "Viewing item "+itemID+" info for " + custID;
+
 		$(loadinto).load(href+" "+loadinto, function() {
 			window.history.pushState({ id: 35 }, msg, href);
 			callback();
