@@ -88,6 +88,7 @@
 			return $sql->fetchColumn();
 		}
 	}
+
 /* =============================================================
 	PERMISSION FUNCTIONS
 ============================================================ */
@@ -729,7 +730,16 @@
 		}
 	}
 
-	function search_custindexpaged($keyword, $limit = 10, $page = 1, $loginID = '', $debug = false) {
+	/**
+	 * Returns Customer Index records that match the Query
+	 * @param  string $keyword Query String to match
+	 * @param  int    $limit   Number of records to return
+	 * @param  int    $page    Page to start from
+	 * @param  string $loginID User Login ID, if blank, will use current user
+	 * @param  bool   $debug   Run in debug? If so, will return SQL Query
+	 * @return array           Customer Index records that match the Query
+	 */
+	function search_custindexpaged($keyword, $limit = 10, $page = 1, $orderbystring, $loginID = '', $debug = false) {
 		$loginID = (!empty($loginID)) ? $loginID : DplusWire::wire('user')->loginid;
 		$user = LogmUser::load($loginID);
 		$SHARED_ACCOUNTS = DplusWire::wire('config')->sharedaccounts;
@@ -757,7 +767,11 @@
 		} else {
 			$q->order($q->expr('custid <> []', [$search]));
 		}
+
+
+
 		$sql = DplusWire::wire('database')->prepare($q->render());
+
 		if ($debug) {
 			return $q->generate_sqlquery($q->params);
 		} else {
@@ -1884,7 +1898,7 @@
 		$user = LogmUser::load($loginID);
 		$q = (new QueryBuilder())->table('saleshist');
 		$q->field('saleshist.*');
-		$q->field($q->expr("STR_TO_DATE(invdate, '%Y%m%d') as dateofinvoice"));
+		$q->field($q->expr("STR_TO_DATE(invoice_date, '%Y%m%d') as dateofinvoice"));
 		$q->where('custid', $custID);
 
 		if (!empty($shiptoID)) {
