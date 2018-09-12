@@ -88,6 +88,7 @@
 			return $sql->fetchColumn();
 		}
 	}
+
 /* =============================================================
 	PERMISSION FUNCTIONS
 ============================================================ */
@@ -729,7 +730,16 @@
 		}
 	}
 
-	function search_custindexpaged($keyword, $limit = 10, $page = 1, $loginID = '', $debug = false) {
+	/**
+	 * Returns Customer Index records that match the Query
+	 * @param  string $keyword Query String to match
+	 * @param  int    $limit   Number of records to return
+	 * @param  int    $page    Page to start from
+	 * @param  string $loginID User Login ID, if blank, will use current user
+	 * @param  bool   $debug   Run in debug? If so, will return SQL Query
+	 * @return array           Customer Index records that match the Query
+	 */
+	function search_custindexpaged($keyword, $limit = 10, $page = 1, $orderbystring, $loginID = '', $debug = false) {
 		$loginID = (!empty($loginID)) ? $loginID : DplusWire::wire('user')->loginid;
 		$user = LogmUser::load($loginID);
 		$SHARED_ACCOUNTS = DplusWire::wire('config')->sharedaccounts;
@@ -757,7 +767,11 @@
 		} else {
 			$q->order($q->expr('custid <> []', [$search]));
 		}
+
+
+
 		$sql = DplusWire::wire('database')->prepare($q->render());
+
 		if ($debug) {
 			return $q->generate_sqlquery($q->params);
 		} else {
@@ -3054,6 +3068,44 @@
 		$q->where('createdby', $loginID);
 		$sql = DplusWire::wire('database')->prepare($q->render());
 		$sql->execute($q->params);
+
+		if ($debug) {
+			return $q->generate_sqlquery($q->params);
+		} else {
+			$sql->execute($q->params);
+			return $sql->fetchColumn();
+		}
+	}
+
+	function get_mindateuseractioncreated($custID = false, $shipID = false, $debug = false) {
+		$q = (new QueryBuilder())->table('useractions');
+		$q->field($q->expr("DATE_FORMAT(MIN(datecreated), '%m/%d/%Y')"));
+		if ($custID) {
+			$q->where('customerlink', $custID);
+		}
+		if ($shipID) {
+			$q->where('shiptolink', $shipID);
+		}
+		$sql = DplusWire::wire('database')->prepare($q->render());
+
+		if ($debug) {
+			return $q->generate_sqlquery($q->params);
+		} else {
+			$sql->execute($q->params);
+			return $sql->fetchColumn();
+		}
+	}
+
+	function get_mindateuseractioncompleted($custID = false, $shipID = false, $debug = false) {
+		$q = (new QueryBuilder())->table('useractions');
+		$q->field($q->expr("DATE_FORMAT(MIN(datecreated), '%m/%d/%Y')"));
+		if ($custID) {
+			$q->where('customerlink', $custID);
+		}
+		if ($shipID) {
+			$q->where('shiptolink', $shipID);
+		}
+		$sql = DplusWire::wire('database')->prepare($q->render());
 
 		if ($debug) {
 			return $q->generate_sqlquery($q->params);

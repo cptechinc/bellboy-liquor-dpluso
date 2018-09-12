@@ -614,22 +614,22 @@
 			
 			if (isset($this->filters['datecreated'])) {
 				// PUT DATE CREATED IN THE THROUGH PART OF THE FILTER
-				
-				if (empty($this->filters['datecreated'][0])) {
+
+				if (empty($this->filters['datecreated'][0] && empty($this->filters['datecreated'][1]))) {
 					unset($this->filters['datecreated']);
 				}
 			}
 			
 			if (isset($this->filters['datecompleted'])) {
-				if (!empty($this->filters['datecompleted'][0])) {
+				if (!empty($this->filters['datecompleted'][0]) || !empty($this->filters['datecompleted'][1])) {
 					$this->filters['completed'] = array('Y');
 				}
 				
 				if (empty($this->filters['datecompleted'][1]) && !empty($this->filters['datecompleted'][0])) {
 					//$this->filters['datecompleted'][1] = $this->filters['datecompleted'][0];
 				}
-				
-				if (empty($this->filters['datecompleted'][0])) {
+
+				if (empty($this->filters['datecompleted'][0]) && empty($this->filters['datecompleted'][1])) {
 					unset($this->filters['datecompleted']);
 				}
 			}
