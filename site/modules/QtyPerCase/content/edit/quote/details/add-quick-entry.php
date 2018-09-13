@@ -47,7 +47,7 @@
 
 	</br>
 	<div>
-		<div class="results">
+		<div class="qe-results">
 
 		</div>
 	</div>
