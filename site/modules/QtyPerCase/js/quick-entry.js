@@ -52,11 +52,14 @@ $(function() {
                         showCancelButton: true,
                         confirmButtonText: 'Make Dplus search?'
                     }).then(function (result) {
-                        var productsearchurl = URI(config.urls.products.redir.itemsearch).addQuery('q', itemsearch).addQuery('custID', custID).toString();
-                        var productresultsurl = URI(config.urls.load.quickentry_searchresults).addQuery('q', itemsearch).toString();
+                        var searchURL = new URI(config.urls.products.redir.itemsearch).addQuery('q', itemsearch).addQuery('custID', custID).toString();
+                        var resultsURL = new URI(config.urls.load.quickentry_searchresults).addQuery('q', itemsearch).toString();
+                        console.log(resultsURL);
                         showajaxloading();
-                        $.get(productsearchurl, function() {
-                            form.find('.item-results').loadin(productresultsurl, function() {
+                        
+                        $.get(searchURL, function() {
+                            form.find('.qe-results').loadin(resultsURL, function() {
+                                
                                 hideajaxloading();
                                 if (focus.length > 0) {
                                     $('html, body').animate({scrollTop: $(focus).offset().top - 60}, 1000);
@@ -88,7 +91,7 @@ $(function() {
         var form = $(".quick-entry-add");
         form.find('input[name=itemID]').val(itemID);
         form.find('input[name=qty-percase]').val(qtypercase);
-        form.find('.results').empty();
+        form.find('.qe-results').empty();
         form.attr('data-validated', itemID);
         form.submit();
     });

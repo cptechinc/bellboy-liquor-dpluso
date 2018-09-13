@@ -44,7 +44,7 @@
 
 	</br>
 	<div>
-		<div class="item-results">
+		<div class="qe-results">
 
 		</div>
 	</div>
